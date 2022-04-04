@@ -21,7 +21,6 @@ class CircularList : public List<T> {
             
             ~DoubleList() 
        {  
-                 // TODO  
                clear(); 
               delete head; 
               delete tail; 
