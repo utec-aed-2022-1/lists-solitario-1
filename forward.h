@@ -18,12 +18,16 @@ class ForwardList : public List<T> {
             delete head;             
         }
 
-        T front(){
-            throw ("sin definir");
+        T front(){ override
+            return head->data; 
         }
 
         T back(){
-            throw ("sin definir");
+            auto temp = this->head; 
+            while(temp->next != NULL) 
+                 temp = temp->next; 
+              
+             return temp->data; 
         }
 
         void push_front(T data){
