@@ -36,6 +36,39 @@ class CircularList : public List<T> {
          { 
              return tail->data; 
          } 
+            
+            
+            void push_front(T value) override 
+         { 
+             if (is_empty()){ 
+                 head->data = value; 
+                 head->next = NULL; 
+                 head->prev = NULL; 
+                 nodes++; 
+             } 
+             Node<T>* temp = new Node<T>(value); 
+             temp->next = head; 
+             temp->data = value; 
+             head->prev = temp; 
+             tail = head; 
+             head = temp; 
+             head->prev = NULL; 
+             tail->next = NULL; 
+        } 
+  
+         void push_back(T value) override 
+         { 
+             if(head->next = NULL){ 
+                 tail->data = value; 
+                 tail->prev = head; 
+             } 
+             Node<T>* temp = new Node<T>(value); 
+             temp->data = value; 
+             tail->next = temp; 
+             temp->prev = tail; 
+             tail = temp; 
+             tail->next = NULL; 
+         } 
 };
     
 
