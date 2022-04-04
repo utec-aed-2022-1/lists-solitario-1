@@ -13,8 +13,19 @@ class CircularList : public List<T> {
         CircularList() : List<T>() { }
 
         ~CircularList(){
-           // TODO
-        }       
+          DoubleList() : List<T>() { 
+             this->head= nullptr; 
+             this->tail = nullptr; 
+             nodes = 0; 
+        }   
+            
+            ~DoubleList() 
+       {  
+                 // TODO  
+               clear(); 
+              delete head; 
+              delete tail; 
+         } 
 };
 
 #endif
