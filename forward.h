@@ -14,7 +14,8 @@ class ForwardList : public List<T> {
         ForwardList() : List<T>() {}
 
         ~ForwardList(){ 
-         	// TODO            
+         	clear(); 
+            delete head;             
         }
 
         T front(){
