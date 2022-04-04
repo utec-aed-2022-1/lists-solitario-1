@@ -27,7 +27,7 @@ class CircularList : public List<T> {
 
         }
             
-             T front() override 
+         T front() override 
          { 
              return head->data; 
          } 
