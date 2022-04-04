@@ -24,7 +24,19 @@ class CircularList : public List<T> {
                clear(); 
               delete head; 
               delete tail; 
+
+        }
+            
+             T front() override 
+         { 
+             return head->data; 
+         } 
+  
+         T back() override 
+         { 
+             return tail->data; 
          } 
 };
+    
 
 #endif
