@@ -94,6 +94,18 @@ class CircularList : public List<T> {
              delete temp; 
              return pb; 
          } 
+            
+             T& operator[](int p) override 
+         { 
+             if (p > nodes || p < 0 ) std::cerr<<"No se puede acceder"<<std::endl; 
+  
+              
+             Node<T>* temp = head; 
+             for(int i = 0; i < p ; i++) temp = temp->next; 
+             
+             return temp->data; 
+              
+         } 
 };
     
 
