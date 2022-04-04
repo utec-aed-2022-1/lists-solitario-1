@@ -70,17 +70,8 @@ class CircularList : public List<T> {
              tail->next = NULL; 
          } 
             
-            
-             pop_back() override 
-         { 
-             Node<T>* temp = tail; 
-             tail = temp->prev; 
-             auto pb = temp->data; 
-             delete temp; 
-             return pb; 
-         } 
-  
-         void insert(T value, int p) override 
+           
+             void insert(T value, int p) override 
          { 
              if (p > nodes || p < 0 ) std::cerr<<"No se puede acceder"<<std::endl; 
              else{ 
@@ -94,6 +85,14 @@ class CircularList : public List<T> {
              temp->next = nodo; 
              nodes++; 
              } 
+         } 
+             pop_back() override 
+         { 
+             Node<T>* temp = tail; 
+             tail = temp->prev; 
+             auto pb = temp->data; 
+             delete temp; 
+             return pb; 
          } 
 };
     
