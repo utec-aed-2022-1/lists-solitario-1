@@ -63,6 +63,17 @@ class DoubleList : public List<T> {
              tail = temp; 
              tail->next = NULL; 
          } 
+     T pop_front() override 
+         { 
+             if (nodes == 0){ 
+                 std::cerr<<"La lista esta vacia"<<std::endl; 
+             } 
+             Node<T>* temp = head; 
+             head = temp->next; 
+             auto pf = temp->data; 
+             delete temp; 
+             return pf; 
+         }
         
 };
 #endif
