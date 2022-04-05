@@ -84,5 +84,23 @@ class DoubleList : public List<T> {
              return pb; 
          } 
         
+    
+    
+    void insert(T value, int p) override 
+         { 
+             if (p > nodes || p < 0 ) 
+                 std::cerr<<"No permitido"<<std::endl; 
+             else{ 
+             Node<T>* nodo = new Node<T>(value); 
+             Node<T>* temp = head; 
+             int i = 0; 
+             while (i++ < p - 1) temp = temp->next; 
+             nodo->next = temp->next; 
+             temp->next->prev = nodo; 
+             nodo->prev = temp; 
+             temp->next = nodo; 
+             nodes++; 
+             } 
+         }
 };
 #endif
