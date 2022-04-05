@@ -103,7 +103,7 @@ class DoubleList : public List<T> {
              } 
          }
     
-    T& operator[](​int​ p) ​override 
+    T& operator[](int p) override 
          { 
              if ( p < 0 || p > nodes )
                  std::cerr<<"No permitido"<<std::endl; 
@@ -115,5 +115,19 @@ class DoubleList : public List<T> {
              return temp->data; 
               
          } 
+    void remove(int p) override 
+         { 
+             if (p > nodes || p < 0 ) 
+                 std::cerr<<"No permitido"<<std::endl; 
+             else{ 
+             Node<T>* temp = head; 
+             int i = 0;      
+             while (i++ < p - 1) temp = temp->next​ 
+             delete temp->next; 
+             temp->next = temp->next->next; 
+             temp->next->next->prev = temp; 
+             nodes--; 
+             } 
+         }
 };
 #endif
