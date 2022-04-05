@@ -102,5 +102,18 @@ class DoubleList : public List<T> {
              nodes++; 
              } 
          }
+    
+    T& operator[](​int​ p) ​override 
+         { 
+             if ( p < 0 || p > nodes )
+                 std::cerr<<"No permitido"<<std::endl; 
+  
+              
+             Node<T>* temp = head; 
+             for(int i = 0; i < p ; i++) temp = temp->next; 
+             
+             return temp->data; 
+              
+         } 
 };
 #endif
