@@ -74,6 +74,15 @@ class DoubleList : public List<T> {
              delete temp; 
              return pf; 
          }
+    
+   T pop_back() override 
+         { 
+             Node<T>* temp = tail; 
+             tail = temp->prev; 
+             auto pb = temp->data; 
+             delete temp; 
+             return pb; 
+         } 
         
 };
 #endif
