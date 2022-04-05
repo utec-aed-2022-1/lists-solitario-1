@@ -50,6 +50,19 @@ class DoubleList : public List<T> {
              head->prev = NULL; 
              tail->next = NULL; 
          } 
+     void push_back(T value) override 
+         { 
+             if(head->next = NULL){ 
+                 tail->data = value; 
+                 tail->prev = head; 
+             } 
+             Node<T>* temp = new Node<T>(value); 
+             temp->data = value; 
+             tail->next = temp; 
+             temp->prev = tail; 
+             tail = temp; 
+             tail->next = NULL; 
+         } 
         
 };
 #endif
