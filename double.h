@@ -156,7 +156,7 @@ class DoubleList : public List<T> {
              } 
             return false; 
          }
-    void clear() override 
+    void clear() override 
          { 
              while(head != nullptr) 
              { 
