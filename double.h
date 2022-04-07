@@ -153,6 +153,17 @@ class DoubleList : public List<T> {
                  return true; 
              } 
             return false; 
-         } 
+         }
+    void clear() override 
+         { 
+             while(head != nullptr) 
+             { 
+                 Node<T>* temp = head; 
+                 head = head->next; 
+                 delete temp; 
+                 nodes--; 
+             } 
+             head = nullptr; 
+         }
 };
 #endif
