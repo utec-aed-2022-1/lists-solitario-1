@@ -30,13 +30,32 @@ class ForwardList : public List<T> {
              return temp->data; 
         }
 
-        void push_front(T data){
-            throw ("sin definir");
-        }
+        void push_front(T value) override 
+         { 
+             if (is_empty()){ 
+                 head->data = value; 
+                 nodes++; 
+             } 
+             else{ 
+                 Node<T>* nodo = new Node<T>(value); 
+                 nodo->next = head; 
+                 head = nodo; 
+                 nodes++; 
+            } 
+              
+         }
+      }
 
-        void push_back(T data){
-            throw ("sin definir");
-        }
+        void​ push_back(T value) override 
+         { 
+             Node<T>* nodo = new Node<T>(value); 
+             Node<T>* temp = head; 
+             while(temp->next != NULL) 
+                 temp = temp->next; 
+                 temp->next = nodo; 
+                 nodo->next = NULL; 
+                 nodes++; 
+         } 
 
         T pop_front(){
             throw ("sin definir");
