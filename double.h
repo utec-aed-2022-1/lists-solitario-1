@@ -41,12 +41,12 @@ class DoubleList : public List<T> {
                  head->prev = NULL; 
                  nodes++; 
              } 
-             Node<T>* temp = new Node<T>(value); 
-             temp->next = head; 
-             temp->data = value; 
-             head->prev = temp; 
+             Node<T>* aux = new Node<T>(value); 
+             aux->next = head; 
+             aux->data = value; 
+             head->prev = aux; 
              tail = head; 
-             head = temp; 
+             head = aux; 
              head->prev = NULL; 
              tail->next = NULL; 
          } 
@@ -56,11 +56,11 @@ class DoubleList : public List<T> {
                  tail->data = value; 
                  tail->prev = head; 
              } 
-             Node<T>* temp = new Node<T>(value); 
-             temp->data = value; 
-             tail->next = temp; 
-             temp->prev = tail; 
-             tail = temp; 
+             Node<T>* aux = new Node<T>(value); 
+             aux->data = value; 
+             tail->next =aux; 
+             aux->prev = tail; 
+             tail = aux; 
              tail->next = NULL; 
          } 
      T pop_front() override 
@@ -68,20 +68,20 @@ class DoubleList : public List<T> {
              if (nodes == 0){ 
                  std::cerr<<"La lista esta vacia"<<std::endl; 
              } 
-             Node<T>* temp = head; 
-             head = temp->next; 
-             auto pf = temp->data; 
-             delete temp; 
-             return pf; 
+             Node<T>* aux = head; 
+             head = aux->next; 
+             auto aux_1 = aux->data; 
+             delete aux; 
+             return aux_1; 
          }
     
    T pop_back() override 
          { 
-             Node<T>* temp = tail; 
-             tail = temp->prev; 
-             auto pb = temp->data; 
-             delete temp; 
-             return pb; 
+             Node<T>* aux = tail; 
+             tail = aux->prev; 
+             auto aux_1 = aux->data; 
+             delete aux_1; 
+             return aux_1; 
          } 
         
     
@@ -125,9 +125,9 @@ class DoubleList : public List<T> {
              int i = 0;      
              while (i++ < p - 1) 
                  aux = aux->next 
-             delete temp->next; 
-             temp->next = aux->next->next; 
-             temp->next->next->prev = aux; 
+             delete aux->next; 
+             aux->next = aux->next->next; 
+             aux->next->next->prev = aux; 
              nodes--; 
              } 
          }
@@ -172,7 +172,7 @@ class DoubleList : public List<T> {
          { 
              Node<T>* aux = head; 
     
-             while (temp) { 
+             while (aux) { 
                  Node<T>* min = aux; 
                  Node<T>* aux_1 = aux->next; 
                   
@@ -193,7 +193,7 @@ class DoubleList : public List<T> {
              else{ 
                  Node<T>* aux = head; 
       
-                 while (temp) { 
+                 while (aux) { 
                      Node<T>* min = aux; 
                      Node<T>* aux = aux->next; 
  
@@ -213,7 +213,7 @@ class DoubleList : public List<T> {
               }
     void reverse() override 
          { 
-             Node<T>* temp = new Node<T>(); 
+             Node<T>* aux = new Node<T>(); 
              Node<T>* ptrActual = head; 
               
              while (current != NULL) 
