@@ -92,13 +92,14 @@ class DoubleList : public List<T> {
                  std::cerr<<"No permitido"<<std::endl; 
              else{ 
              Node<T>* nodo = new Node<T>(value); 
-             Node<T>* temp = head; 
+             Node<T>*aux = head; 
              int i = 0; 
-             while (i++ < p - 1) temp = temp->next; 
-             nodo->next = temp->next; 
-             temp->next->prev = nodo; 
-             nodo->prev = temp; 
-             temp->next = nodo; 
+             while (i++ < p - 1) 
+                 aux = aux->next; 
+             nodo->next = aux->next; 
+             aux->next->prev = nodo; 
+             nodo->prev = aux; 
+             aux->next = nodo; 
              nodes++; 
              } 
          }
@@ -109,10 +110,10 @@ class DoubleList : public List<T> {
                  std::cerr<<"No permitido"<<std::endl; 
   
               
-             Node<T>* temp = head; 
-             for(int i = 0; i < p ; i++) temp = temp->next; 
-             
-             return temp->data; 
+             Node<T>* aux = head; 
+             for(int i = 0; i < p ; i++)
+                 aux = aux->next;
+             return aux->data; 
               
          } 
     void remove(int p) override 
@@ -120,18 +121,19 @@ class DoubleList : public List<T> {
              if (p > nodes || p < 0 ) 
                  std::cerr<<"No permitido"<<std::endl; 
              else{ 
-             Node<T>* temp = head; 
+             Node<T>* aux = head; 
              int i = 0;      
-             while (i++ < p - 1) temp = temp->next​ 
+             while (i++ < p - 1) 
+                 aux = aux->next 
              delete temp->next; 
-             temp->next = temp->next->next; 
-             temp->next->next->prev = temp; 
+             temp->next = aux->next->next; 
+             temp->next->next->prev = aux; 
              nodes--; 
              } 
          }
     
     
- int size() override 
+    int size() override 
          { 
           return nodes; 
          }
@@ -139,9 +141,9 @@ class DoubleList : public List<T> {
          { 
              while(head != nullptr) 
              { 
-                 Node<T>* temp = head; 
+                 Node<T>* aux = head; 
                  head = head->next; 
-                 delete temp; 
+                 delete aux; 
                  nodes--; 
              } 
              head = nullptr; 
@@ -158,9 +160,9 @@ class DoubleList : public List<T> {
          { 
              while(head != nullptr) 
              { 
-                 Node<T>* temp = head; 
+                 Node<T>* aux = head; 
                  head = head->next; 
-                 delete temp; 
+                 delete aux; 
                  nodes--; 
              } 
              head = nullptr; 
@@ -168,20 +170,62 @@ class DoubleList : public List<T> {
     
     bool is_sorted() override 
          { 
-             Node<T>* temp = head; 
+             Node<T>* aux = head; 
     
              while (temp) { 
-                 Node<T>* min = temp; 
-                 Node<T>* aux = temp->​next​; 
+                 Node<T>* min = aux; 
+                 Node<T>* aux_1 = aux->next; 
                   
-                 while (r) { 
+                 while (aux_1) { 
                      if (min->data > r->data) 
                          return false; 
           
-                     aux = aux->next; 
+                     aux_1 = aux_1->next; 
                  } 
              } 
              return true; 
+         } 
+    
+    void sort() override 
+         { 
+             if (size() == 1 || is_empty() || is_sorted()) 
+                 return; 
+             else{ 
+                 Node<T>* aux = head; 
+      
+                 while (temp) { 
+                     Node<T>* min = aux; 
+                     Node<T>* aux = aux->next; 
+ 
+                     while (aux) { 
+                         if (min->data > aux->data) 
+                             min = aux; 
+              
+                         aux = aux->next; 
+                     } 
+          
+                     int aux_1 = aux->data; 
+                     aux->data = min->data; 
+                     min->data = aux_1; 
+                     aux = aux->next; 
+                  } 
+                } 
+              }
+    void reverse() override 
+         { 
+             Node<T>* temp = new Node<T>(); 
+             Node<T>* ptrActual = head; 
+              
+             while (current != NULL) 
+             { 
+                 aux = ptrActual->prev; 
+                 ptrActual->prev = ptrActual->next; 
+                 ptrActual->next = aux;             
+                 ptrActual = ptrActual->prev; 
+             } 
+              
+             if(aux != NULL ) 
+                 head = aux->prev; 
          } 
 };
 #endif
