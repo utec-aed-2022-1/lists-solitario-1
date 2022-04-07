@@ -165,5 +165,23 @@ class DoubleList : public List<T> {
              } 
              head = nullptr; 
          }
+    
+    bool is_sorted() override 
+         { 
+             Node<T>* temp = head; 
+    
+             while (temp) { 
+                 Node<T>* min = temp; 
+                 Node<T>* aux = temp->​next​; 
+                  
+                 while (r) { 
+                     if (min->data > r->data) 
+                         return false; 
+          
+                     aux = aux->next; 
+                 } 
+             } 
+             return true; 
+         } 
 };
 #endif
