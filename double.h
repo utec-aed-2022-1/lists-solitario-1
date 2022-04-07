@@ -129,5 +129,30 @@ class DoubleList : public List<T> {
              nodes--; 
              } 
          }
+    
+    
+ int size() override 
+         { 
+          return nodes; 
+         }
+         void clear() override 
+         { 
+             while(head != nullptr) 
+             { 
+                 Node<T>* temp = head; 
+                 head = head->next; 
+                 delete temp; 
+                 nodes--; 
+             } 
+             head = nullptr; 
+         } 
+    
+    bool is_empty() override 
+         { 
+             if(head == nullptr){ 
+                 return true; 
+             } 
+            return false; 
+         } 
 };
 #endif
