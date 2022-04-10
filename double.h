@@ -124,7 +124,7 @@ class DoubleList : public List<T> {
              Node<T>* aux = head; 
              int i = 0;      
              while (i++ < p - 1) 
-                 aux = aux->next 
+                 aux = aux->next;
              delete aux->next; 
              aux->next = aux->next->next; 
              aux->next->next->prev = aux; 
