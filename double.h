@@ -177,7 +177,7 @@ class DoubleList : public List<T> {
                  Node<T>* aux_1 = aux->next; 
                   
                  while (aux_1) { 
-                     if (min->data > r->data) 
+                     if (min->data > aux_1->data) 
                          return false; 
           
                      aux_1 = aux_1->next; 
