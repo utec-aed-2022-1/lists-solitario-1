@@ -106,6 +106,24 @@ class CircularList : public List<T> {
              return temp->data; 
               
          } 
+            
+            bool is_empty() override 
+         { 
+             return nodes == 0; 
+         } 
+  
+         int size() override 
+         { 
+             return nodes; 
+         } 
+  
+         void clear() override 
+         { 
+             while(nodes != 0) { 
+                 pop_front(); 
+                 nodes--; 
+             } 
+         } 
 };
     
 
