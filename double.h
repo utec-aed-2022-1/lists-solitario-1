@@ -156,17 +156,6 @@ class DoubleList : public List<T> {
              } 
             return false; 
          }
-    void clear() override 
-         { 
-             while(head != nullptr) 
-             { 
-                 Node<T>* aux = head; 
-                 head = head->next; 
-                 delete aux; 
-                 nodes--; 
-             } 
-             head = nullptr; 
-         }
     
     bool is_sorted() override 
          { 
