@@ -216,7 +216,7 @@ class DoubleList : public List<T> {
              Node<T>* aux = new Node<T>(); 
              Node<T>* ptrActual = head; 
               
-             while (current != NULL) 
+             while (ptrActual != NULL) 
              { 
                  aux = ptrActual->prev; 
                  ptrActual->prev = ptrActual->next; 
