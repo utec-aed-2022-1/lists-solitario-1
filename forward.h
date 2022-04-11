@@ -112,7 +112,13 @@ class ForwardList : public List<T> {
         }
 
         void clear(){
-            throw ("sin definir");
+          while(head!=NULL){
+          Node<T>*temp=head:
+          head=head->next;
+          delete temp;
+          nodes --;
+          }
+            head=nullptr;
         }
         
         void sort(){
