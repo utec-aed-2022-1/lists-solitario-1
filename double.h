@@ -86,9 +86,9 @@ class DoubleList : public List<T> {
         
     
     
-    void insert(T value, int p) override 
+    void insert(T value, int pos) override 
          { 
-             if (p > nodes || p < 0 ) 
+             if (pos > nodes || pos < 0 ) 
                  std::cerr<<"No permitido"<<std::endl; 
              else{ 
              Node<T>* nodo = new Node<T>(value); 
@@ -104,9 +104,9 @@ class DoubleList : public List<T> {
              } 
          }
     
-    T& operator[](int p) override 
+    T& operator[](int pos) override 
          { 
-             if ( p < 0 || p > nodes )
+             if ( pos < 0 || pos > nodes )
                  std::cerr<<"No permitido"<<std::endl; 
   
               
@@ -116,9 +116,9 @@ class DoubleList : public List<T> {
              return aux->data; 
               
          } 
-    void remove(int p) override 
+    void remove(int pos) override 
          { 
-             if (p > nodes || p < 0 ) 
+             if (pos > nodes || pos < 0 ) 
                  std::cerr<<"No permitido"<<std::endl; 
              else{ 
              Node<T>* aux = head; 
