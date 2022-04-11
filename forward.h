@@ -103,15 +103,18 @@ class ForwardList : public List<T> {
             throw ("sin definir");
         }
 
-        bool is_empty(){
-            throw ("sin definir");
+        bool is_empty() override{
+            if (head==nullptr){
+            return true;
+            }
+            return false;
         }
 
-        int size(){
-            throw ("sin definir");
+        int size() override{
+            return nodes;
         }
 
-        void clear(){
+        void clear() override{
           while(head!=NULL){
           Node<T>*temp=head:
           head=head->next;
@@ -121,7 +124,7 @@ class ForwardList : public List<T> {
             head=nullptr;
         }
         
-        void sort(){
+        void sort() override{
             if(size()=1 ||is_empty()|| is_sorted())
                 return;
             else{
@@ -156,7 +159,7 @@ class ForwardList : public List<T> {
             return true;
         }    
 
-        void reverse(){
+        void reverse() override{
             Node<T>*ptrAct=head;
             Node<T>*prev=NULL;
             Node<T>*next?NULL;
