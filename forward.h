@@ -59,7 +59,7 @@ class ForwardList : public List<T> {
 
         T pop_front() override{ 
              if (nodes == 0){ 
-                 std::cout<<"La lista esta vacia"<<std::endl; 
+                 std::cout<<"No hay elementos en la lista"<<std::endl; 
              } 
              Node<T>* temp = head; 
              head = head->next; 
@@ -68,9 +68,28 @@ class ForwardList : public List<T> {
              return ptrCola; 
          } 
 
-        T pop_back(){
-            throw ("sin definir");
-        }
+        T pop_back() override{ 
+             if(head->next ==NULL) 
+             { 
+                 delete head; 
+                 head = NULL; 
+                 nodes--; 
+                 return 0; 
+             } 
+ 
+             else 
+             { 
+                 Node<T>* temp = head; 
+  
+                 while(temp->next->next != NULL) 
+                     temp = temp->next; 
+                 delete temp->next; 
+                 temp->next = NULL; 
+                 nodes--; 
+                 auto ptrCola = temp->next->data; 
+                 return ptrCola; 
+             } 
+           } 
 
         T insert(T data, int pos){
             throw ("sin definir");
