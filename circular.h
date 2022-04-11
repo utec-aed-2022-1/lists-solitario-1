@@ -71,14 +71,14 @@ class CircularList : public List<T> {
          } 
             
            
-             void insert(T value, int p) override 
+             void insert(T value, int pos) override 
          { 
-             if (p > nodes || p < 0 ) std::cerr<<"No se puede acceder"<<std::endl; 
+             if (pos > nodes || pos < 0 ) std::cerr<<"No se puede acceder"<<std::endl; 
              else{ 
              Node<T>* nodo = new Node<T>(value); 
              Node<T>* temp = head; 
              int i = 0; 
-             while (i++ < p - 1) temp = temp->next; 
+             while (i++ < pos - 1) temp = temp->next; 
              nodo->next = temp->next; 
              temp->next->prev = nodo; 
              nodo->prev = temp; 
@@ -95,9 +95,9 @@ class CircularList : public List<T> {
              return ptrCola; 
          } 
             
-             T& operator[](int p) override 
+             T& operator[](int pos) override 
          { 
-             if (p > nodes || p < 0 ) std::cerr<<"No se puede acceder"<<std::endl; 
+             if (pos > nodes || pos < 0 ) std::cerr<<"No se puede acceder"<<std::endl; 
   
               
              Node<T>* temp = head; 
