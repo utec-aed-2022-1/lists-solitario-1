@@ -91,12 +91,18 @@ class ForwardList : public List<T> {
              } 
            } 
 
-        T insert(T data, int pos){
+        void insert(T data, int pos){
             throw ("sin definir");
         }
 
-        bool remove(int pos){
-            throw ("sin definir");
+        void remove(int pos){
+             Node<T>*temp=head;
+             int i=0;
+            while(i++<pos-1)
+                temp=temp->next;
+                delete temp->next;
+                temp->next=temp->next->next;
+            node--;
         }
 
         T& operator[](int pos){
