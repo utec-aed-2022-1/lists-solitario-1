@@ -124,7 +124,28 @@ class CircularList : public List<T> {
                  nodes--; 
              } 
          } 
-            
+           void sort()override 
+           {
+           if(size()==1 ||is_empty()|| is_sorted())
+               return;
+              else {
+               Node<T>*temp=head;
+                  while(temp){
+                   Node<T>*menor=temp;
+                   Node<T>*aux=temp->next;
+                      while(aux){
+                      if(menor->data->aux->data)
+                          menor=aux;
+                          
+                          aux=aux->next;
+                      }
+                      int aux_2=temp->data;
+                      temp->data=menor->data;
+                      menor->data=aux_2;
+                      temp=temp->next;
+                  }
+              }
+           }
             
            bool is_sorted() override {
             Node<T>*temp=head;
