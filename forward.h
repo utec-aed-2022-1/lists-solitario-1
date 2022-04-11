@@ -46,7 +46,7 @@ class ForwardList : public List<T> {
          }
       }
 
-        void​ push_back(T value) override 
+        void push_back(T value) override 
          { 
              Node<T>* nodo = new Node<T>(value); 
              Node<T>* temp = head; 
@@ -57,9 +57,16 @@ class ForwardList : public List<T> {
                  nodes++; 
          } 
 
-        T pop_front(){
-            throw ("sin definir");
-        }
+        T pop_front() override{ 
+             if (nodes == 0){ 
+                 std::cout<<"La lista esta vacia"<<std::endl; 
+             } 
+             Node<T>* temp = head; 
+             head = head->next; 
+             auto ptrCola = temp->data; 
+             delete temp; 
+             return ptrCola; 
+         } 
 
         T pop_back(){
             throw ("sin definir");
