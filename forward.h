@@ -125,9 +125,19 @@ class ForwardList : public List<T> {
             throw ("sin definir");
         }
 
-        bool is_sorted(){
-            throw ("sin definir");
-        }
+        bool is_sorted() override{
+            Node<T>* temp=head;
+            while (temp){
+            Node<T>*menor=temp;
+            Node<T>*aux=temp->next;
+            while(aux){
+            if(menor->data->aux->data)
+                return false;
+                aux=aux->next;
+             }
+          }
+            return true;
+        }    
 
         void reverse(){
             Node<T>*ptrAct=head;
