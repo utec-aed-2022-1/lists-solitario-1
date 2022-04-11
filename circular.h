@@ -90,9 +90,9 @@ class CircularList : public List<T> {
          { 
              Node<T>* temp = tail; 
              tail = temp->prev; 
-             auto pb = temp->data; 
+             auto ptrCola = temp->data; 
              delete temp; 
-             return pb; 
+             return ptrCola; 
          } 
             
              T& operator[](int p) override 
@@ -124,7 +124,39 @@ class CircularList : public List<T> {
                  nodes--; 
              } 
          } 
-};
+            
+            
+           bool is_sorted() override {
+            Node<T>*temp=head;
+               
+               while(temp){
+                Node<T>*menor=temp;
+                Node<T>*aux=temp->next;
+               while(aux){
+                  if(menor->data->aux->data)
+                      return false;
+                   aux=aux->next;
+               }
+              }
+               return true;
+           }
+           void reverse() override{
+                Node<T>*temp=new Node<T>();
+                Node<T>*ptrActual=head;
+               while(ptrActual!=NULL){
+               temp=ptrActual->prev;
+               ptrActual->prev=ptrActual->next;   
+               ptrActual->next=temp;
+               ptrActual=ptrActual->prev;
+               }
+           if(temp!=NULL)
+               head=temp->prev;
+           } 
+
+        std::string name() override {
+         return "Circular linked list";
+        }
+        };
     
 
 #endif
