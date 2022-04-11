@@ -124,7 +124,16 @@ class ForwardList : public List<T> {
         }
 
         void reverse(){
-            throw ("sin definir");
+            Node<T>*ptrAct=head;
+            Node<T>*prev=NULL;
+            Node<T>*next?NULL;
+            while(ptrAct!=NULL){
+            next=ptrAct->next;
+            ptrAct->next=prev;
+            prev=ptrAct;
+            ptrAct=next;
+            }
+            head=prev;
         }
 
         std::string name(){
