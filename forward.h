@@ -91,11 +91,18 @@ class ForwardList : public List<T> {
              } 
            } 
 
-        void insert(T data, int pos){
-            throw ("sin definir");
+        void insert(T data, int pos) override{
+             Node<T>*nodo=new Node<T>(data);
+             Node<T>*temp=head;
+            int i=0 ;
+               while(i++<pos-1)
+                   temp=temp->next;
+                   nodo->next=temp->next;
+                   temp->next=nodo;
+                   node++;
         }
 
-        void remove(int pos){
+        void remove(int pos) override{
              Node<T>*temp=head;
              int i=0;
             while(i++<pos-1)
@@ -105,8 +112,9 @@ class ForwardList : public List<T> {
             node--;
         }
 
-        T& operator[](int pos){
-            throw ("sin definir");
+        T& operator[](int pos) override {
+            if(pos>nodes || pos<0)
+                std::cerr<<"No es posible esta operacion"<<std::endl;
         }
 
         bool is_empty() override{
