@@ -1,21 +1,21 @@
 #ifndef LIST_H
 #define LIST_H
-
+#include <iostream>
 #include "node.h"
 
 // TODO: Implement all methods
 template <typename T>
-class List {  
-     private: 
-     Node<T>* head; 
-     Node<T>* tail; 
-     int nodes; 
+class List {
+     private:
+     Node<T>* head;
+     Node<T>* tail;
+     int nodes;
     public:
         List() : head(nullptr), tail(nullptr), nodes(0) {};
         virtual ~List(){
-            // TODO            
+            // TODO
         };
-        
+
         //Contrato
         virtual T front() = 0;
         virtual T back() = 0;

@@ -2,6 +2,7 @@
 #define FORWARD_H
 #include <iostream>
 #include "list.h"
+using namespace std;
 
 // TODO: Implement all methods
 template <typename T>
@@ -11,110 +12,33 @@ class ForwardList : public List<T> {
         int nodes;
 
     public:
-        ForwardList() : List<T>() {}
-
-        ~ForwardList(){ 
-         	clear(); 
-            delete head;             
+        void clear() override{
+          while(head!=NULL){
+          Node<T>*temp=head;
+          head=head->next;
+          delete temp;
+          nodes --;
+          }
+            head=nullptr;
         }
 
-        T front(){ override
-            return head->data; 
+        ForwardList() : List<T>() {}
+
+        ~ForwardList()
+        {
+         	clear();
+          delete head;
+        }
+        T front() override
+        {
+            return head->data;
         }
 
         T back(){
-            auto temp = this->head; 
-            while(temp->next != NULL) 
-                 temp = temp->next; 
-              
-             return temp->data; 
-        }
-
-        void push_front(T value) override 
-         { 
-             if (is_empty()){ 
-                 head->data = value; 
-                 nodes++; 
-             } 
-             else{ 
-                 Node<T>* nodo = new Node<T>(value); 
-                 nodo->next = head; 
-                 head = nodo; 
-                 nodes++; 
-            } 
-              
-         }
-      }
-
-        void push_back(T value) override 
-         { 
-             Node<T>* nodo = new Node<T>(value); 
-             Node<T>* temp = head; 
-             while(temp->next != NULL) 
-                 temp = temp->next; 
-                 temp->next = nodo; 
-                 nodo->next = NULL; 
-                 nodes++; 
-         } 
-
-        T pop_front() override{ 
-             if (nodes == 0){ 
-                 std::cout<<"No hay elementos en la lista"<<std::endl; 
-             } 
-             Node<T>* temp = head; 
-             head = head->next; 
-             auto ptrCola = temp->data; 
-             delete temp; 
-             return ptrCola; 
-         } 
-
-        T pop_back() override{ 
-             if(head->next ==NULL) 
-             { 
-                 delete head; 
-                 head = NULL; 
-                 nodes--; 
-                 return 0; 
-             } 
- 
-             else 
-             { 
-                 Node<T>* temp = head; 
-  
-                 while(temp->next->next != NULL) 
-                     temp = temp->next; 
-                 delete temp->next; 
-                 temp->next = NULL; 
-                 nodes--; 
-                 auto ptrCola = temp->next->data; 
-                 return ptrCola; 
-             } 
-           } 
-
-        void insert(T data, int pos) override{
-             Node<T>*nodo=new Node<T>(data);
-             Node<T>*temp=head;
-            int i=0 ;
-               while(i++<pos-1)
-                   temp=temp->next;
-                   nodo->next=temp->next;
-                   temp->next=nodo;
-                   node++;
-        }
-
-        void remove(int pos) override{
-             Node<T>*temp=head;
-             int i=0;
-            while(i++<pos-1)
-                temp=temp->next;
-                delete temp->next;
-                temp->next=temp->next->next;
-            node--;
-        }
-
-        T& operator[](int pos) override {
-            if(pos>nodes || pos<0)
-                std::cerr<<"No es posible esta operacion"<<std::endl;
+            auto temp = this->head;
+          while(temp->next!=NULL)
+              temp = temp->next;
+          return temp->data;
         }
 
         bool is_empty() override{
@@ -124,22 +48,102 @@ class ForwardList : public List<T> {
             return false;
         }
 
+        void push_front(T value) override {
+if(is_empty()){
+head = new Node<T>(NULL);
+head->data =value;
+nodes++;
+}
+else{
+Node<T>* nodo = new Node<T>(value);
+nodo->next = head;
+head= nodo;
+nodes++;
+}
+}
+
+        void push_back(T value) override{
+Node<T>*nodo=new Node<T>(value);
+Node<T>*temp=head;
+while(temp->next!=NULL)
+temp=temp->next;
+temp->next=nodo;
+nodo->next=NULL;
+nodes++;
+}
+
+       T pop_front()override{
+            if(nodes==0){
+            std::cout<<"No hay elementos en la lista"<<std::endl;
+            }
+             Node<T>*temp=head;
+             head=head->next;
+             auto ptrCola=temp->data;
+             delete temp;
+             return ptrCola;
+}
+
+        T pop_back() override{
+          T value;
+          if(is_empty()) return value;
+           if(head->next == NULL)
+           {
+             value = head->data;
+             delete head;
+             head = NULL;
+             nodes--;
+           }
+           else{
+             Node<T>* temp=head;
+             while(temp->next->next!=NULL)
+                 temp=temp->next;
+             value = temp->next->data;
+             delete temp->next;
+             temp->next=NULL;
+             nodes--;
+           }
+           return value;
+         }
+
+        void insert(T data, int pos) override{
+            Node<T>*nodo=new Node<T>(data);
+            Node<T>*temp=head;
+            int i=0 ;
+               while(i++<pos-1)
+                   temp=temp->next;
+                   nodo->next=temp->next;
+                   temp->next=nodo;
+                   nodo++;
+        }
+
+        void remove(int pos) override{
+            Node<T>*temp=head;
+             int i=0;
+            while(i++<pos-1)
+                temp=temp->next;
+                delete temp->next;
+                temp->next=temp->next->next;
+            temp--;
+        }
+
+        T& operator[](int pos) override {
+          if(pos>nodes || pos<0)
+           throw;
+          Node<T> *temp = head;
+          for(int i=0;i<pos;i++){
+            temp = temp->next;}
+          return temp->data;
+        }
+
+
         int size() override{
             return nodes;
         }
 
-        void clear() override{
-          while(head!=NULL){
-          Node<T>*temp=head:
-          head=head->next;
-          delete temp;
-          nodes --;
-          }
-            head=nullptr;
-        }
-        
+
+
         void sort() override{
-            if(size()=1 ||is_empty()|| is_sorted())
+            if(size()==1 ||is_empty()|| is_sorted())
                 return;
             else{
             Node<T>*temp=head;
@@ -147,7 +151,7 @@ class ForwardList : public List<T> {
              Node<T>*menor=temp;
              Node<T>*aux=temp;
                  while(aux){
-                 if(menor->data->aux->data)
+                 if(menor->data>aux->data)
                      menor=aux;
                      aux=aux->next;
                  }
@@ -160,23 +164,20 @@ class ForwardList : public List<T> {
         }
 
         bool is_sorted() override{
-            Node<T>* temp=head;
-            while (temp){
-            Node<T>*menor=temp;
-            Node<T>*aux=temp->next;
-            while(aux){
-            if(menor->data->aux->data)
-                return false;
-                aux=aux->next;
-             }
-          }
-            return true;
-        }    
+        Node<T>* temp = head;
+	      for(int i = 0; i<size()-1; i++) {
+		      if(temp->data > temp->next->data)
+			      return false;
+		      temp = temp->next;
+        }
+	      return true;
+      }
+
 
         void reverse() override{
             Node<T>*ptrAct=head;
             Node<T>*prev=NULL;
-            Node<T>*next?NULL;
+            Node<T>*next=NULL;
             while(ptrAct!=NULL){
             next=ptrAct->next;
             ptrAct->next=prev;
@@ -189,7 +190,7 @@ class ForwardList : public List<T> {
         std::string name(){
             return "ForwardList";
         }
-        
+
 };
 
 #endif
