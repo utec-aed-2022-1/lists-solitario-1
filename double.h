@@ -16,7 +16,8 @@ class DoubleList : public List<T> {
              this->head = nullptr;
              this->tail = nullptr;
              nodes=0;
-         }
+    }
+
     void clear() override
           {
             while(head!=nullptr)
@@ -25,122 +26,92 @@ class DoubleList : public List<T> {
               head =head->next;
               delete aux;
               nodes--;
-      }
-             head = nullptr;
+            }
+            head = nullptr;
           }
-        ~DoubleList(){
-              clear();
-              delete head;
-              delete tail;
-        }
-    T front() override
-         {
-             return head->data;
-         }
 
-         T back() override
-         {
-             return tail->data;
-         }
+    ~DoubleList(){clear();}
+
+    T front() override
+    {
+        return head->data;
+    }
+
+    T back() override
+    {
+        return tail->data;
+    }
 
 
     void push_front(T value)  override
      {
-     /* if (is_empty()){
-                 head = new Node<T>(value);
-                 head->next = nullptr;
-                 head->prev = nullptr;
-                 tail = head;
-                 nodes++;
-               return;
-       }
-      Node<T> *p = new Node<T>(value);
-      p->next = head;
-      p->prev = nullptr;
-      head = p;*/
-      // p->next->prev = p;
-      // p->prev->next = p;
-              if (is_empty()){
-                  cout << "R";
-                  head = new Node<T>(value);
-                  head->data=value;
-                  head->next = NULL;
-                  head->prev = NULL;
-                  tail = head;
-                  nodes++;
-                  return;
-              }
-                else{
-                  cout << "T";
-              Node<T>* newHead = new Node<T>(value);
-              newHead->next = head;
-              newHead->data=value;
-              head->prev = newHead;
-              tail = head;
-              head=newHead;
-              head->prev = NULL;
-              tail->next = NULL;
-              nodes++;
-              }
+        Node<T>* newNode = new Node<T>(value);
+        if(head == nullptr) {
+            head = newNode;
+        }
 
-         }
-     void push_back(T value) override
-         {
-           if(head->next==NULL){
-             //tail=head;
-                 tail->data = value;
-                 tail->prev = head;
-             }
-             Node<T>* aux = new Node<T>(value);
-             aux->data = value;
-             tail->next =aux;
-             aux->prev = tail;
-             tail = aux;
-             tail->next = NULL;
-             nodes++;
-         }
-     T pop_front() override
-         {
-             if (nodes == 0){
-                 std::cerr<<"La lista esta vacia"<<std::endl;
-             }
-             Node<T>* aux =head;
-             head = aux->next;
-             auto aux_1 = aux->data;
-             delete aux;
-             nodes--;
-             return aux_1;
-         }
+        else {
+            head->prev = newNode;
+            newNode->next = head;
+            head = newNode;
+        }
+        nodes++;
+    }
+    void push_back(T value) override
+    {
+        Node<T>* n = new Node<T>(value);
+        if (head == nullptr)
+            head = n;
+
+        if (tail != nullptr)
+            tail->next = n;
+
+        n->prev = tail;
+        n->next = nullptr;
+        tail = n;
+        nodes++;
+    }
+
+    T pop_front() override
+    {
+        if (nodes == 0){
+            std::cerr<<"La lista esta vacia"<<std::endl;
+        }
+            Node<T>* aux = head;
+            head = aux->next;
+            auto aux_1 = aux->data;
+            delete aux;
+            nodes--;
+            return aux_1;
+    }
 
    T pop_back() override
-         {
-             Node<T>* aux = tail;
-             tail = aux->prev;
-             auto aux_1= aux->data;
-             delete aux;
-             nodes--;
-             return aux_1;
-         }
-
-
+    {
+        Node<T>* aux = tail;
+        tail = aux->prev;
+        auto aux_1= aux->data;
+        delete aux;
+        nodes--;
+        return aux_1;
+    }
 
     void insert(T value, int pos) override
-         {
-             if (pos > nodes || pos < 0 )
-                 std::cerr<<"No permitido"<<std::endl;
-             else{
-             Node<T>* nodo =new Node<T>(value);
-             Node<T>*aux = head;
-             int i = 0;
-             while (i++ < pos - 1)
-                 aux = aux->next;
-             nodo->next=aux->next;
-             aux->next->prev=nodo;
-             nodo->prev=aux;
-             aux->next=nodo;
-             nodes++;
-          }
-         }
+    {
+        if (pos > nodes || pos < 0 )
+            std::cerr<<"No permitido"<<std::endl;
+        else{
+        Node<T>* nodo =new Node<T>(value);
+        Node<T>*aux = head;
+        int i = 0;
+        while (i++ < pos - 1)
+            aux = aux->next;
+            nodo->next=aux->next;
+            aux->next->prev=nodo;
+            nodo->prev=aux;
+            aux->next=nodo;
+            nodes++;
+        }
+    }
 
     T& operator[](int pos) override
          {
@@ -180,24 +151,17 @@ class DoubleList : public List<T> {
             return false;
          }
 
-    bool is_sorted() override
+  bool is_sorted() override
          {
-             Node<T>* aux = head;
-
-             while (aux) {
-                 Node<T>* min = aux;
-                 Node<T>* aux_1 = aux->next;
-
-                 while (aux_1) {
-                     if (min->data > aux_1->data)
-                         return false;
-
-                     aux_1 = aux_1->next;
-                 }
-             }
-             return true;
-         }
-
+            {
+              if (head == NULL)
+                return true;
+    for (Node<T>*temp=head; temp->next != NULL; temp=temp->next)
+       if (temp->data <= temp->next->data)
+            return false;
+    return true;
+      }
+            }
     void sort() override
          {
              if (size() == 1 || is_empty() || is_sorted())
