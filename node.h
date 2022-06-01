@@ -1,23 +1,26 @@
 #ifndef NODE_H
 #define NODE_H
-
+#include <iostream>
 template <typename T>
 struct Node {
     T data;
     Node<T>* next;
     Node<T>* prev;
 
-    Node(){ 
-        // TODO
+    Node(){
+      next=new Node<T>();
+      prev=new Node<T>();
     }
 
     Node(T value){
-        // TODO
+       this->data = value;
     }
 
     void killSelf(){
-        // TODO      
-    }    
+        delete next;
+        delete prev;
+        this->data=NULL;
+    }
 };
 
 #endif
