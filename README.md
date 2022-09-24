@@ -12,7 +12,7 @@
 
 
 
-**T back();** // Retorna el elemento al final
+T back();** // Retorna el elemento al final
 
 
 > Asegurarse de que el codigo compile sin errores.
