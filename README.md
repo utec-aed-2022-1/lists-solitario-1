@@ -3,12 +3,14 @@
       -Rojas Rojas, Christian Kevin
       -Zapata Gallegos, Neo Marcelo
 
-* Objetivo:
- • vector<Registro> search(T key)
- • vector<Registro> rangeSearch(T begin-key, T end-key) 
- • bool remove(T key) 
- • bool add(Registro registro)
+# Objetivo:
+      >Metodos
+            • vector<Registro> search(T key)
+            • vector<Registro> rangeSearch(T begin-key, T end-key) 
+            • bool remove(T key) 
+            • bool add(Registro registro)
 
+ 
 
 
 T back();** // Retorna el elemento al final
