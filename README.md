@@ -3,7 +3,7 @@
       -Rojas Rojas, Christian Kevin
       -Zapata Gallegos, Neo Marcelo
 
-# Objetivo:
+* Objetivo:
  • vector<Registro> search(T key)
  • vector<Registro> rangeSearch(T begin-key, T end-key) 
  • bool remove(T key) 
