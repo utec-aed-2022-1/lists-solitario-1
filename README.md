@@ -4,7 +4,7 @@
       -Zapata Gallegos, Neo Marcelo
 
 ## OBJETIVO
--Implementar las funciones 
+-Implementar las funciones.
  vector<Registro> search(T key)
  vector<Registro> rangeSearch(T begin-key, T end-key) 
  bool remove(T key) 
